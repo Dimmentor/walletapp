@@ -5,12 +5,16 @@ from .models import Wallet
 from .serializers import WalletSerializer, OperationSerializer
 
 
+def create_wallet(wallet_uuid):
+    return Wallet.objects.create(uuid=wallet_uuid)
+
+
 @api_view(['POST'])
 def make_operation(request, wallet_uuid):
-    try:
-        wallet = Wallet.objects.get(uuid=wallet_uuid)
-    except Wallet.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+    print(f"Получен GET-запрос для UUID: {wallet_uuid}")
+    wallet = Wallet.objects.filter(uuid=wallet_uuid).first()
+    if wallet is None:
+        wallet = create_wallet(wallet_uuid)
 
     serializer = OperationSerializer(data=request.data)
     if serializer.is_valid():
@@ -32,6 +36,7 @@ def make_operation(request, wallet_uuid):
 
 @api_view(['GET'])
 def get_balance(request, wallet_uuid):
+    print(f"Получен GET-запрос для UUID: {wallet_uuid}")
     try:
         wallet = Wallet.objects.get(uuid=wallet_uuid)
         serializer = WalletSerializer(wallet)

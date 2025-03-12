@@ -48,3 +48,16 @@ class WalletTests(APITestCase):
         }
         response = self.client.post(path, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_create_wallet(self):
+        new_wallet_uuid = uuid.uuid4()
+        path = reverse('make_operation', args=[new_wallet_uuid])
+        data = {
+            'operation_type': 'DEPOSIT',
+            'amount': 0
+        }
+        response = self.client.post(path, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        created_wallet = Wallet.objects.get(uuid=new_wallet_uuid)
+        self.assertEqual(created_wallet.balance, 0)
