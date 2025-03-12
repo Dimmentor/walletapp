@@ -23,7 +23,7 @@ def make_operation(request, wallet_uuid):
             if wallet.balance >= amount:
                 wallet.update_balance(-amount)
             else:
-                return Response({"detail": "Insufficient funds."}, status=status.HTTP_400_BAD_REQUEST)
+                return Response({"message": "Недостаточно средств."}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({"balance": wallet.balance}, status=status.HTTP_200_OK)
 
