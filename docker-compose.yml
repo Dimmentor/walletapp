@@ -1,0 +1,22 @@
+version: '3.11'
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: 'wallets'
+      POSTGRES_USER: 'dimmentor'
+      POSTGRES_PASSWORD: 'Dimalong1910+'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  web:
+    build: .
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
