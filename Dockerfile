@@ -1,10 +1,7 @@
 FROM python:3.11-slim
-
 WORKDIR /app
+COPY . /app
+RUN pip install --no-cache-dir locust
 
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
-
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "wallet_service.wsgi:application"]
+CMD ["locust", "-f", "locustfile.py", "--host=http://127.0.0.1:8000"]
