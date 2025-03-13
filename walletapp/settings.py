@@ -79,16 +79,13 @@ WSGI_APPLICATION = 'walletapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wallets',
+        'NAME': 'dimmentor_wallets',
         'USER': 'dimmentor',
         'PASSWORD': 'Dimalong1910+',
-        'HOST': 'localhost',
+        'HOST': ' walletapp',
         'PORT': 5432,
     }
 }
-
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {

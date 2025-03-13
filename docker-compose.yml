@@ -1,22 +1,16 @@
-version: '3.11'
 services:
-  db:
-    image: postgres:17
-    environment:
-      POSTGRES_DB: 'wallets'
-      POSTGRES_USER: 'dimmentor'
-      POSTGRES_PASSWORD: 'Dimalong1910+'
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-  web:
+  app:
     build: .
-    command: python3 manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/app
+    command: locust -f locustfile.py
     ports:
-      - "8000:8000"
+      - "8089:8089"
     depends_on:
-      - db
-
-volumes:
-  postgres_data:
+      - walletapp
+  walletapp:
+    image: postgres:latest
+    environment:
+      - POSTGRES_DB=dimmentor_wallets
+      - POSTGRES_USER=dimmentor
+      - POSTGRES_PASSWORD=Dimalong1910+
+    ports:
+      - "5432:5432"
