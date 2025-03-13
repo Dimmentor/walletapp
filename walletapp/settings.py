@@ -82,7 +82,7 @@ DATABASES = {
         'NAME': 'dimmentor_wallets',
         'USER': 'dimmentor',
         'PASSWORD': 'Dimalong1910+',
-        'HOST': ' walletapp',
+        'HOST': 'dimmentor_psql',
         'PORT': 5432,
     }
 }
