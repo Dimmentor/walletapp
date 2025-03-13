@@ -25,7 +25,7 @@ msgpack==1.1.0
 psutil==7.0.0
 psycopg2==2.9.10
 pycparser==2.22
-pywin32==309
+pywin32==308
 pyzmq==26.3.0
 requests==2.32.3
 sqlparse==0.5.3

@@ -6,6 +6,10 @@ services:
       - "8089:8089"
     depends_on:
       - walletapp
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - LOCUST_TARGET=http://walletapp:5432
   walletapp:
     image: postgres:latest
     environment:
@@ -14,3 +18,8 @@ services:
       - POSTGRES_PASSWORD=Dimalong1910+
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
