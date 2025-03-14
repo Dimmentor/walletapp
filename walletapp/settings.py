@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-qklpcsby&g@nbxi)q@p134e=(-hhrcc063)z=!arqc_az!6jc#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_extensions',
     'wallets',
+    'django.contrib.postgres',
 ]
 
 MIDDLEWARE = [
@@ -79,11 +80,11 @@ WSGI_APPLICATION = 'walletapp.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dimmentor_wallets',
-        'USER': 'dimmentor',
-        'PASSWORD': 'Dimalong1910+',
-        'HOST': 'dimmentor_psql',
-        'PORT': 5432,
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'pgdb',
+        'PORT': '5432',
     }
 }
 
