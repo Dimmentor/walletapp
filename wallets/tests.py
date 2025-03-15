@@ -4,11 +4,11 @@ from rest_framework.test import APITestCase
 from .models import Wallet
 
 
-
 class WalletTests(APITestCase):
     def setUp(self):
         self.wallet_uuid = '2560a9c2-588b-4a8f-b75c-37128a50af4a'
         self.wallet = Wallet.objects.create(uuid=self.wallet_uuid, balance=0)
+
     def test_deposit(self):
         url = reverse('make_operation', args=[self.wallet_uuid])
         data = {

@@ -1,10 +1,12 @@
 from rest_framework import serializers
 from .models import Wallet
 
+
 class WalletSerializer(serializers.ModelSerializer):
     class Meta:
         model = Wallet
         fields = ('uuid', 'balance')
+
 
 class OperationSerializer(serializers.Serializer):
     operation_type = serializers.ChoiceField(choices=['DEPOSIT', 'WITHDRAW'])
